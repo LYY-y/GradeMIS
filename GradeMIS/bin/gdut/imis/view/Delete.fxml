@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gdut.imis.view.DeleteController">
+   <children>
+      <Label layoutX="169.0" layoutY="72.0" text="删除学生记录">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Label layoutX="110.0" layoutY="155.0" text="学号：" />
+      <TextField fx:id="noField" layoutX="185.0" layoutY="150.0" />
+      <Button layoutX="278.0" layoutY="201.0" mnemonicParsing="false" onAction="#handleOk" text="删除" />
+      <Button layoutX="337.0" layoutY="201.0" mnemonicParsing="false" onAction="#handleCancle" text="取消" />
+   </children>
+</AnchorPane>

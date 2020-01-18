@@ -1,0 +1,34 @@
+package gdut.imis.dao;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import gdut.imis.entity.Student;
+
+public class StudentDAO {
+	public static void write(Student[] stuList) {
+		try (FileWriter file = new FileWriter("student.info");
+				BufferedWriter bw = new BufferedWriter(file);){
+			for(Student stu: stuList) {
+				bw.write(stu.getInfo()+"\n");
+			}
+			bw.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static ArrayList<Student> read() {
+		ArrayList<Student> stuList = new ArrayList<Student>();
+		try(BufferedReader br = new BufferedReader(new FileReader("student.info"))) {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return stuList;
+	}
+}

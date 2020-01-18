@@ -1,0 +1,138 @@
+package gdut.imis.service;
+
+import java.util.ArrayList;
+
+import gdut.imis.dao.StudentDAO;
+import gdut.imis.entity.Student;
+
+public class GradeService implements ImpGrade {
+	private static ArrayList<Student> stuList;
+	public void init() {
+		stuList = StudentDAO.read();
+	}
+	@Override
+	public boolean add(Student stu) {
+		for(Student s:stuList) {		//检查是否有重复学号
+			if (s.getNo().equals(stu.getNo())) {
+				System.out.println("学号重复，新增失败！");
+				return false;
+			}
+		}
+		stuList.add(stu);
+		System.out.println("添加成功！");
+		return true;
+	}
+
+	@Override
+	public boolean delete(String no) {
+		for(Student s:stuList) {		//检查是否有该学号记录
+			if (s.getNo().equals(no)) {
+				stuList.remove(s);
+				System.out.println("删除成功！");
+				return true;
+			}
+		}
+		System.out.println("查找不到该学生学号记录，删除失败！");
+		return false;
+	}
+
+	@Override
+	public boolean update(Student stu) {
+		for(Student s:stuList) {		//检查是否有该学号记录
+			if (s.getNo().equals(stu.getNo())) {
+				s.setNo(stu.getNo());
+				s.setName(stu.getName());
+				s.setAge(stu.getAge());
+				s.setSex(stu.getSex());
+				s.setDepart(stu.getDepart());
+				s.setMidGrade(stu.getMidGrade());
+				s.setFinalGrade(stu.getFinalGrade());
+				System.out.println("更新成功！");
+				return true;
+			}
+		}
+		System.out.println("查找不到该学生学号记录，更新失败！");
+		return false;
+	}
+
+	@Override
+	public Student findByno(String no) {
+		for(Student s:stuList) {		//查询是否有该学号记录
+			if (s.getNo().equals(no)) {
+				System.out.println("查询成功！"+s.getName());
+				return s;
+			}
+		}
+		System.out.println("查找不到该学生学号记录，查询失败！");
+		return null;
+	}
+
+	@Override
+	public ArrayList<Student> findByname(String name) {
+		ArrayList<Student> findList = new ArrayList<Student>();
+		for(Student s:stuList) {		//查询是否有该姓名记录
+			if (s.getName().equals(name)) {
+				findList.add(s);
+				System.out.println(s.getNo());
+			}
+		}
+		return findList;
+	}
+
+	@Override
+	public ArrayList<Student> findSome(String depart, double low, double upper) {
+		ArrayList<Student> findList = new ArrayList<Student>();
+		for(Student s:stuList) {		//筛选出指定系的学生
+			if (s.getDepart().equals(depart)) {
+				if(s.CountGrade()>=low && s.CountGrade()<=upper) {
+					findList.add(s);
+					System.out.println(s.getNo()+"\t"+s.getName()+"\t"+s.getAge()+"\t"+s.getSex()+"\t"+s.getDepart()+"\t"+s.getMidGrade()+"\t"+s.getFinalGrade()+"\t"+s.CountGrade()+"\n");
+				}
+			}
+		}
+		return findList;
+	}
+
+	@Override
+	public void sortByGrade(String depart) {
+		ArrayList<Student> sortList = new ArrayList<Student>();
+		for(Student s:stuList) {		//筛选出指定系的学生
+			if (s.getDepart().equals(depart)) {
+				sortList.add(s);
+			}
+		}
+		Student[] sortArr=new Student[sortList.size()];
+		sortArr=sortList.toArray(sortArr);
+		
+		//基于综合成绩进行冒泡降序排序
+		for (int k = 0; k < sortArr.length-1; k++) {
+			boolean flag = true;
+			for (int i = 0; i < sortArr.length-1-i; i++) {
+				Student tempStudent;
+				if (sortArr[i].CountGrade()<sortArr[i+1].CountGrade()) {
+					tempStudent = sortArr[i];
+					sortArr[i]=sortArr[i+1];
+					sortArr[i+1]=tempStudent;
+					flag=false;
+				}
+			}
+			if(flag) {	//若该趟没有发生交换，则证明已排序成功，直接跳出循环即可
+				break;
+			}
+		}
+		System.out.println("学号"+"\t"+"姓名"+"\t"+"年龄"+"\t"+"性别"+"\t"+"系别"+"\t"+"期中考试"+"\t"+"期末考试"+"\t"+"综合成绩");
+		for(Student s:sortArr) {
+			System.out.print(s.getNo()+"\t"+s.getName()+"\t"+s.getAge()+"\t"+s.getSex()+"\t"+s.getDepart()+"\t"+s.getMidGrade()+"\t"+s.getFinalGrade()+"\t"+s.CountGrade()+"\n");
+		}
+	}
+
+	@Override
+	public void save() {
+		Student[] stuArr = new Student[stuList.size()];
+		stuArr = stuList.toArray(stuArr);
+		StudentDAO.write(stuArr);
+	}
+	
+	
+
+}

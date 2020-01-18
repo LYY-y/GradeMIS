@@ -1,0 +1,15 @@
+package gdut.imis.dao;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class TestStudentDAO {
+	
+	
+	@Test
+	void testWrite() {
+		fail("Not yet implemented");
+	}
+
+}

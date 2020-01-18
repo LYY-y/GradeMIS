@@ -1,0 +1,17 @@
+package gdut.imis;
+
+import gdut.imis.entity.ComputerStu;
+import gdut.imis.entity.EnglishStu;
+import gdut.imis.entity.Sex;
+import gdut.imis.entity.Student;
+import gdut.imis.service.GradeService;
+
+public class MainTest {
+	public static void main(String[] args) {
+		GradeService gs = new GradeService();
+		//Student student = new EnglishStu("1003", "林二", 15, Sex.女, "英语系", 89, 68, 99);
+		Student student = new ComputerStu("1006", "张伍", 18, Sex.男, "计算机系", 90, 68, 88,87);
+		gs.add(student);
+		gs.save();
+	}
+}

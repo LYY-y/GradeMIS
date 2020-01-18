@@ -1,0 +1,76 @@
+package gdut.imis.dao;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import gdut.imis.entity.ComputerStu;
+import gdut.imis.entity.EnglishStu;
+import gdut.imis.entity.LiteratureStu;
+import gdut.imis.entity.Sex;
+import gdut.imis.entity.Student;
+
+public class StudentDAO {
+	public static void write(Student[] stuList) {
+		try (FileWriter file = new FileWriter("student.info");
+				BufferedWriter bw = new BufferedWriter(file);){
+			for(Student stu: stuList) {
+				bw.write(stu.getInfo()+"\n");
+			}
+			bw.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static ArrayList<Student> read() {
+		ArrayList<Student> stuList = new ArrayList<Student>();
+		try(BufferedReader br = new BufferedReader(new FileReader("student.info"))) {
+			String stuInfo;
+			while ((stuInfo=br.readLine())!=null) {
+				String[] stuarr=stuInfo.split("#");
+				if("英语系".equals(stuarr[0])) {
+					EnglishStu stu =new EnglishStu();
+					stu.setDepart(stuarr[0]);
+					stu.setNo(stuarr[1]);
+					stu.setName(stuarr[2]);
+					stu.setAge(Integer.parseInt(stuarr[3]));
+					stu.setSex(Sex.valueOf(stuarr[4]));
+					stu.setMidGrade(Double.parseDouble(stuarr[5]));
+					stu.setFinalGrade(Double.parseDouble(stuarr[6]));
+					stu.setSpeechGrade(Double.parseDouble(stuarr[7]));
+					stuList.add(stu);
+				}else if("计算机系".equals(stuarr[0])){
+					ComputerStu stu =new ComputerStu();
+					stu.setDepart(stuarr[0]);
+					stu.setNo(stuarr[1]);
+					stu.setName(stuarr[2]);
+					stu.setAge(Integer.parseInt(stuarr[3]));
+					stu.setSex(Sex.valueOf(stuarr[4]));
+					stu.setMidGrade(Double.parseDouble(stuarr[5]));
+					stu.setFinalGrade(Double.parseDouble(stuarr[6]));
+					stu.setOperateGrade(Double.parseDouble(stuarr[7]));
+					stu.setWritingGrade(Double.parseDouble(stuarr[8]));
+					stuList.add(stu);
+				}else if("文学系".equals(stuarr[0])){
+					LiteratureStu stu =new LiteratureStu();
+					stu.setDepart(stuarr[0]);
+					stu.setNo(stuarr[1]);
+					stu.setName(stuarr[2]);
+					stu.setAge(Integer.parseInt(stuarr[3]));
+					stu.setSex(Sex.valueOf(stuarr[4]));
+					stu.setMidGrade(Double.parseDouble(stuarr[5]));
+					stu.setFinalGrade(Double.parseDouble(stuarr[6]));
+					stu.setSpeechGradeL(Double.parseDouble(stuarr[7]));
+					stu.setWork(Double.parseDouble(stuarr[8]));
+					stuList.add(stu);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return stuList;
+	}
+}

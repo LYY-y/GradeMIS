@@ -1,0 +1,22 @@
+package gdut.imis.dao;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import gdut.imis.entity.Student;
+
+public class StudentDAO {
+	public static void write(Student[] stuList) {
+		try {
+			FileWriter file = new FileWriter("student.info");
+			BufferedWriter bw = new BufferedWriter(file);
+			for(Student stu: stuList) {
+				bw.write(stu.getInfo()+"\n");
+			}
+			bw.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
