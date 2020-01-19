@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gdut.imis.view.MainScenceController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="成绩管理">
+            <items>
+                  <Menu mnemonicParsing="false" text="录入">
+                    <items>
+                      <MenuItem fx:id="addEngstu" mnemonicParsing="false" onAction="#handleAddEngstu" text="英语系" />
+                        <MenuItem fx:id="AddCompStu" mnemonicParsing="false" onAction="#handleAddCompStu" text="计算机系" />
+                        <MenuItem fx:id="addLitStu" mnemonicParsing="false" onAction="#handleAddLitAdd" text="文学系" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="修改">
+                    <items>
+                      <MenuItem fx:id="engUpdate" mnemonicParsing="false" onAction="#handleUpdateEngstu" text="英语系" />
+                        <MenuItem fx:id="comUpdate" mnemonicParsing="false" onAction="#handleUpdateComstu" text="计算机系" />
+                        <MenuItem fx:id="litUpdate" mnemonicParsing="false" onAction="#handleUpdateLitstu" text="文学系" />
+                    </items>
+                  </Menu>
+                  <MenuItem fx:id="delete" mnemonicParsing="false" onAction="#handleDelete" text="删除" />
+                  <MenuItem fx:id="save" mnemonicParsing="false" onAction="#handleSave" text="保存" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="查询">
+            <items>
+              <MenuItem fx:id="findByNo" mnemonicParsing="false" onAction="#handleFindByNo" text="按学号查询" />
+                  <MenuItem fx:id="findByName" mnemonicParsing="false" onAction="#handleFindByName" text="按姓名查询" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="统计">
+            <items>
+              <MenuItem fx:id="findSome" mnemonicParsing="false" onAction="#handleFindSome" text="综合成绩筛选" />
+                  <MenuItem fx:id="sort" mnemonicParsing="false" onAction="#handleSort" text="系排名" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <Label text="欢迎来到成绩管理系统！" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="44.0" />
+         </font>
+      </Label>
+   </center>
+</BorderPane>

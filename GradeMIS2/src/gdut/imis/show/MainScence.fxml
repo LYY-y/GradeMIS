@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gdut.imis.show.MainScenceController">
+   <children>
+      <Label layoutX="114.0" layoutY="151.0" text="欢迎来到成绩管理系统！">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="138.0" layoutY="240.0" text="请选择系别：" />
+      <TextField layoutX="235.0" layoutY="235.0" />
+      <Button layoutX="328.0" layoutY="301.0" mnemonicParsing="false" text="确定" />
+      <Button layoutX="387.0" layoutY="301.0" mnemonicParsing="false" text="重置" />
+   </children>
+</AnchorPane>
